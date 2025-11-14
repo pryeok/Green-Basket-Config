@@ -25,13 +25,18 @@
           dialect: org.hibernate.dialect.MySQLDialect
 
     # RabbitMQ Configuration - Disabled
-    cloud:
-      bus:
-        enabled: false
     rabbitmq:
+      host: 127.0.0.1
+      port: 5672
+      username: greenbasket
+      password: greenbasket
       listener:
         simple:
-          auto-startup: false
+          auto-startup: true
+
+    cloud:
+      bus:
+        enabled: true
 
   # Eureka Client Configuration
   eureka:

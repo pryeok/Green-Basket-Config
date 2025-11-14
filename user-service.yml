@@ -24,15 +24,18 @@
         timeout: 60000
 
     # RabbitMQ Configuration
-    # rabbitmq:
-    #   host: 127.0.0.1
-    #   port: 5672
-    #   username: guest
-    #   password: '{cipher}암호화된값'  # 나중에 암호화 처리
+    rabbitmq:
+      host: 127.0.0.1
+      port: 5672
+      username: greenbasket
+      password: greenbasket
+      listener:
+        simple:
+          auto-startup: true
 
     cloud:
       bus:
-        enabled: false
+        enabled: true 
 
     # Security
     security:
