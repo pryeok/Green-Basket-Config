@@ -1,0 +1,64 @@
+ # Server Configuration
+  server:
+    port: 0
+
+  # Spring Application Configuration
+  spring:
+    application:
+      name: order-service
+
+    # Database Configuration
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3307/order_service?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
+      username: greenbasket
+      password: '{cipher}AQCE+yjbSO2CXZnDTtbqj/x1K6pNV7vdGpEbWNnULr3/uAKQUJby7Ip8p87aiMDg2PTvcni6ALdrLW0wPfSEHKlpVMLcBLNs3WWF//VGmgYyQ7TtPKjn6iwd1fIFBQs71    
+  1klnhwCxu+185im/QoPKtWzoc+I1ZoJhd6SvRipj5rC/uG8IwuaO535iXHhqXIbLBrKKr200t4qzTF3QenE8lMo0MbDodbiT9Vj2rkF+sVgUCORVnpj9BO2Z2xUDWpDXDe3pX2ILXP0lT4RNVBvwm6Bp    
+  q6LfhIU8mX9sUZWji7r5JbsF+OTXtZASoEjqdnpNFYuyg5fZIW70TiUaiwr1Hdp+Xqcf76hFUAxz9mjaAgyvjKLRcWTmOFtgf9mEeCxmEY='
+
+    # JPA Configuration
+    jpa:
+      hibernate:
+        ddl-auto: create
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
+          dialect: org.hibernate.dialect.MySQLDialect
+
+    # RabbitMQ Configuration - Disabled
+    cloud:
+      bus:
+        enabled: false
+    rabbitmq:
+      listener:
+        simple:
+          auto-startup: false
+
+  # Eureka Client Configuration
+  eureka:
+    instance:
+      instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+      hostname: localhost
+      prefer-ip-address: false
+    client:
+      service-url:
+        defaultZone: http://localhost:8761/eureka
+      fetch-registry: true
+      register-with-eureka: true
+
+  # Logging
+  logging:
+    level:
+      org.springframework.security: DEBUG
+      com.example.userservice.client: DEBUG
+
+  # Management Endpoints
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: refresh,health,beans,info
+    health:
+      rabbit:
+        enabled: false
