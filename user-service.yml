@@ -1,0 +1,79 @@
+  # Database Configuration
+  spring:
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3307/user_service?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
+      username: greenbasket
+      password: '{cipher}AQAuhDUfbktlWlj9eNRR9Ng+TpdyP2kNWnfJDEiM+2W+whsaLiTRH5b6DZ9PvhIHxMyfh+N8pkW7oSf+8jRYw83aAuhOs2sdxVCY2rIq5xop9LgIecHfuEeIJEYjZ2qrA4LYooCFaLHhjtTop2mK9cHHByOQZ0FcRFmHyx86PMz8iyZIywIs1IToOW+HYFFbHb5WgVYhhrbwe2zcL6gWbeZfygKnBdcb2U2fqAGN7IervVJ6D7bDp64g4JJ+BsaS9EVNtUm/OLnnLiMOw6UyOuvxje8rIte1T4wjNiV7BFd0z61N4ZJkTz4OjK47p8eHasjnGYxBHd0+cnnyF6j1bI864y7Q4AmXZq2AUfsJp7FynmnPPQ9D8W8eF/QaNPMVbG8='
+
+    # JPA Configuration
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
+          dialect: org.hibernate.dialect.MySQLDialect
+
+    # Redis Configuration
+    data:
+      redis:
+        host: localhost
+        port: 6379
+        timeout: 60000
+
+    # RabbitMQ Configuration
+    # rabbitmq:
+    #   host: 127.0.0.1
+    #   port: 5672
+    #   username: guest
+    #   password: '{cipher}암호화된값'  # 나중에 암호화 처리
+
+    cloud:
+      bus:
+        enabled: false
+
+    # Security
+    security:
+      user:
+        name: user
+        password: '{cipher}AQB1EgWciTRQGpx+NRztF5XYoXV4ZXWpgO5wr+8kn9Pm7hG54Dq+CNtOPgk1elkuuq1L0drL05zst2FDYPwo2tqkp5ZBHm70BHdWwclCamJPFmwZIdWsCzZeM7wvqJn6vHIBVJoX1D2SEiKeUd+5LuOpv+p0uPSmITsdndEWchPpO7LSirz+2pbKLaSp+3M/r+W/+jLd2te0bHpuLm+1S8guUu5jF8c8I34WMjA0zmcWqjPssXBFyD5YvSJGRUCrsOyII/IZDkthOTvV+FPMCnlNDGnvyCDBa2uHHz/RnTCU0qi7G0BwbSuUmwWKfaFjYuoJDGcM2QInsSHeXV8KVcxBAMokVQ4EwCHwtzoDXKaqnWFXpLjpJGmoILz8JtA6r/D38V2NpD/UqVGwXpt6JStA+wLR3QDQxrset0W51Kg9igFMTX+l1ekgXEyfOp5dmCw='
+
+  # JWT Token Configuration
+  token:
+    access-expiration-time: 1800000
+    refresh-expiration-time: 604800000
+    secret: '{cipher}AQCIwz7n2luG81IcYOwvD/Xc0xXNLCgziePbwG73OlU/G+d1x+hyoEz8RlTtOCVGJnL/V9ozeIRBEJ/ly+yWTTCa2deLf71vUSt6U0fNEH217eZ350XdP1NgCuMd7y8REWVMYphAPAh8wLreekabi8UtBRCrP3wNOdBBiQgpCehr1rnhE9rwxcKVRtesqYULAOsLatZrNwu8EBmTvF0oPMeLdgAdWksiBfeEoHUKc3hXOBgm31ySaOnj6NNX+OgJT3TgSkzpaclNy9bPpYlSpdU2LvIR0FyhASuBfmE5gLq2P1MmOG+IoICKixHdpGSBBDjjT/1RBynmWo9wO9+biiMO+pZwY2JYVjK7P6evIAxNAAAFsNrX/BBapGAeUWYUUsFetq4ksHUtu8dG7jiYT1mO9QWLvXjR5bFaLOhYkRFPOo76LdTSI69XTMaexXqfi1A='
+
+  # Eureka Client Configuration
+  eureka:
+    instance:
+      instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+      hostname: localhost
+      prefer-ip-address: false
+    client:
+      service-url:
+        defaultZone: http://localhost:8761/eureka
+      fetch-registry: true
+      register-with-eureka: true
+
+  # Custom Properties
+  greeting:
+    message: Welcome to the Green-Bascket.
+
+  # Logging
+  logging:
+    level:
+      org.springframework.security: DEBUG
+      com.example.userservice.client: DEBUG
+
+  # Management Endpoints
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: refresh,health,beans,info
+    health:
+      rabbit:
+        enabled: false
