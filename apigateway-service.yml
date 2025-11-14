@@ -95,7 +95,7 @@
     endpoints:
       web:
         exposure:
-          include: refresh,health,beans,info,httpexchanges
+          include: refresh,health,beans,info,httpexchanges,busrefresh
     health:
       rabbit:
         enabled: false
