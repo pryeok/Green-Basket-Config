@@ -72,10 +72,10 @@
   token:
     access-expiration-time: 1800000
     refresh-expiration-time: 604800000
-    secret: '{cipher}AQCIwz7n2luG81IcYOwvD/Xc0xXNLCgziePbwG73OlU/G+d1x+hyoEz8RlTtOCVGJnL/V9ozeIRBEJ/ly+yWTTCa2deLf71vUSt6U0fNEH217eZ350XdP1NgCuMd7y8REWVMY    
-  phAPAh8wLreekabi8UtBRCrP3wNOdBBiQgpCehr1rnhE9rwxcKVRtesqYULAOsLatZrNwu8EBmTvF0oPMeLdgAdWksiBfeEoHUKc3hXOBgm31ySaOnj6NNX+OgJT3TgSkzpaclNy9bPpYlSpdU2LvIR0    
-  FyhASuBfmE5gLq2P1MmOG+IoICKixHdpGSBBDjjT/1RBynmWo9wO9+biiMO+pZwY2JYVjK7P6evIAxNAAAFsNrX/BBapGAeUWYUUsFetq4ksHUtu8dG7jiYT1mO9QWLvXjR5bFaLOhYkRFPOo76LdTSI    
-  69XTMaexXqfi1A='
+    secret: '{cipher}AQCnhb9TNv6VTu87jfcvsgf3j/zqfNq+lykL/qqjeXXcDbQhxr6SXZh8gUvyRp1Tx9GTvupgavtPLI8OFiCm7bpNNaZPytSGDWY38tQyl8VcYdItmKfzBozPmfRsEARQ1jDCIFFiiVTrKDu5Q5PANGq6quaLl2WQikLj74ikU/czskImrR9m4ZKSZc2Ag0MfanHwB96NIpnqDRhCD5EEJyXycDHfhFTX9V3vei0VLHM3YLmMt5/T7FwyNnskn71F10ut1Y+DiJgmxQlW4FH5AxsOICgq5kN/HPF2ktmZKWWoNKiZQT2RDaqAZU7yYkSP/hwboxPbXY+RO/tNJ/NtYCVVCXlaPTKi5lcB2B9gyMLHnpjOXykp0LyvnUmDUPfOUiczIKtXTUk6ihJvLWyZfs+dYiwKbils1P3fKMZblRMcLt3B35IVk3Hr1IbEgB3Oo8U='
+
+
+  
 
   # Eureka Client Configuration
   eureka:
