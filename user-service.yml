@@ -65,7 +65,7 @@
 
   # Custom Properties
   greeting:
-    message: Welcome to the Green-Bascket!!
+    message: Welcome to the Green-Bascket!!!
 
   # Logging
   logging:
