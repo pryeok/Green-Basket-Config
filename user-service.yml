@@ -4,7 +4,7 @@
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://localhost:3307/user_service?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
       username: greenbasket
-      password: '{cipher}AQAuhDUfbktlWlj9eNRR9Ng+TpdyP2kNWnfJDEiM+2W+whsaLiTRH5b6DZ9PvhIHxMyfh+N8pkW7oSf+8jRYw83aAuhOs2sdxVCY2rIq5xop9LgIecHfuEeIJEYjZ2qrA4LYooCFaLHhjtTop2mK9cHHByOQZ0FcRFmHyx86PMz8iyZIywIs1IToOW+HYFFbHb5WgVYhhrbwe2zcL6gWbeZfygKnBdcb2U2fqAGN7IervVJ6D7bDp64g4JJ+BsaS9EVNtUm/OLnnLiMOw6UyOuvxje8rIte1T4wjNiV7BFd0z61N4ZJkTz4OjK47p8eHasjnGYxBHd0+cnnyF6j1bI864y7Q4AmXZq2AUfsJp7FynmnPPQ9D8W8eF/QaNPMVbG8='
+      password: '{cipher}AQCE+yjbSO2CXZnDTtbqj/x1K6pNV7vdGpEbWNnULr3/uAKQUJby7Ip8p87aiMDg2PTvcni6ALdrLW0wPfSEHKlpVMLcBLNs3WWF//VGmgYyQ7TtPKjn6iwd1fIFBQs711klnhwCxu+185im/QoPKtWzoc+I1ZoJhd6SvRipj5rC/uG8IwuaO535iXHhqXIbLBrKKr200t4qzTF3QenE8lMo0MbDodbiT9Vj2rkF+sVgUCORVnpj9BO2Z2xUDWpDXDe3pX2ILXP0lT4RNVBvwm6Bpq6LfhIU8mX9sUZWji7r5JbsF+OTXtZASoEjqdnpNFYuyg5fZIW70TiUaiwr1Hdp+Xqcf76hFUAxz9mjaAgyvjKLRcWTmOFtgf9mEeCxmEY='
 
     # JPA Configuration
     jpa:
@@ -36,15 +36,15 @@
 
     # Security
     security:
-      user:
+      user
         name: user
-        password: '{cipher}AQB1EgWciTRQGpx+NRztF5XYoXV4ZXWpgO5wr+8kn9Pm7hG54Dq+CNtOPgk1elkuuq1L0drL05zst2FDYPwo2tqkp5ZBHm70BHdWwclCamJPFmwZIdWsCzZeM7wvqJn6vHIBVJoX1D2SEiKeUd+5LuOpv+p0uPSmITsdndEWchPpO7LSirz+2pbKLaSp+3M/r+W/+jLd2te0bHpuLm+1S8guUu5jF8c8I34WMjA0zmcWqjPssXBFyD5YvSJGRUCrsOyII/IZDkthOTvV+FPMCnlNDGnvyCDBa2uHHz/RnTCU0qi7G0BwbSuUmwWKfaFjYuoJDGcM2QInsSHeXV8KVcxBAMokVQ4EwCHwtzoDXKaqnWFXpLjpJGmoILz8JtA6r/D38V2NpD/UqVGwXpt6JStA+wLR3QDQxrset0W51Kg9igFMTX+l1ekgXEyfOp5dmCw='
+        password: $2a$10$g70rRcQBR7Jnm9A9m/Nqje8lCIPeADz2.VBMxhPyzUBoJc28pvC9.
 
   # JWT Token Configuration
   token:
     access-expiration-time: 1800000
     refresh-expiration-time: 604800000
-    secret: '{cipher}AQCIwz7n2luG81IcYOwvD/Xc0xXNLCgziePbwG73OlU/G+d1x+hyoEz8RlTtOCVGJnL/V9ozeIRBEJ/ly+yWTTCa2deLf71vUSt6U0fNEH217eZ350XdP1NgCuMd7y8REWVMYphAPAh8wLreekabi8UtBRCrP3wNOdBBiQgpCehr1rnhE9rwxcKVRtesqYULAOsLatZrNwu8EBmTvF0oPMeLdgAdWksiBfeEoHUKc3hXOBgm31ySaOnj6NNX+OgJT3TgSkzpaclNy9bPpYlSpdU2LvIR0FyhASuBfmE5gLq2P1MmOG+IoICKixHdpGSBBDjjT/1RBynmWo9wO9+biiMO+pZwY2JYVjK7P6evIAxNAAAFsNrX/BBapGAeUWYUUsFetq4ksHUtu8dG7jiYT1mO9QWLvXjR5bFaLOhYkRFPOo76LdTSI69XTMaexXqfi1A='
+    secret: '{cipher}AQCnhb9TNv6VTu87jfcvsgf3j/zqfNq+lykL/qqjeXXcDbQhxr6SXZh8gUvyRp1Tx9GTvupgavtPLI8OFiCm7bpNNaZPytSGDWY38tQyl8VcYdItmKfzBozPmfRsEARQ1jDCIFFiiVTrKDu5Q5PANGq6quaLl2WQikLj74ikU/czskImrR9m4ZKSZc2Ag0MfanHwB96NIpnqDRhCD5EEJyXycDHfhFTX9V3vei0VLHM3YLmMt5/T7FwyNnskn71F10ut1Y+DiJgmxQlW4FH5AxsOICgq5kN/HPF2ktmZKWWoNKiZQT2RDaqAZU7yYkSP/hwboxPbXY+RO/tNJ/NtYCVVCXlaPTKi5lcB2B9gyMLHnpjOXykp0LyvnUmDUPfOUiczIKtXTUk6ihJvLWyZfs+dYiwKbils1P3fKMZblRMcLt3B35IVk3Hr1IbEgB3Oo8U='
 
   # Eureka Client Configuration
   eureka:
