@@ -27,7 +27,7 @@
           - id: user-service-public
             uri: lb://USER-SERVICE
             predicates:
-              - Path=/user-service/users,/user-service/auth/**,/user-service/redis-test/**
+              - Path=/user-service/users,/user-service/auth/**,/user-service/redis-test/**,/user-service/health-check
             filters:
               - RemoveRequestHeader=Cookie
               - RewritePath=/user-service/(?<segment>.*), /$\{segment}
