@@ -7,17 +7,10 @@
     application:
       name: apigateway-service
 
-    # RabbitMQ Configuration
+    # Cloud Configuration (통합)
     cloud:
       bus:
         enabled: false
-    rabbitmq:
-      listener:
-        simple:
-          auto-startup: false
-
-    # Spring Cloud Gateway Routes Configuration
-    cloud:
       gateway:
         routes:
           # Route 0: User Service - Public API
@@ -68,6 +61,12 @@
               - RemoveRequestHeader=Cookie
               - RewritePath=/order-service/(?<segment>.*), /$\{segment}
               - JwtAuthentication
+
+    # RabbitMQ Configuration
+    rabbitmq:
+      listener:
+        simple:
+          auto-startup: false
 
   # JWT Token Configuration
   token:
