@@ -1,0 +1,101 @@
+ # Server Configuration
+  server:
+    port: 8000
+
+  # Spring Application Configuration
+  spring:
+    application:
+      name: apigateway-service
+
+    # RabbitMQ Configuration
+    cloud:
+      bus:
+        enabled: false
+    rabbitmq:
+      listener:
+        simple:
+          auto-startup: false
+
+    # Spring Cloud Gateway Routes Configuration
+    cloud:
+      gateway:
+        routes:
+          # Route 0: User Service - Public API
+          - id: user-service-public
+            uri: lb://USER-SERVICE
+            predicates:
+              - Path=/user-service/users,/user-service/auth/**,/user-service/redis-test/**
+            filters:
+              - RemoveRequestHeader=Cookie
+              - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+
+          # Route 1: User Service - Protected API
+          - id: user-service-protected
+            uri: lb://USER-SERVICE
+            predicates:
+              - Path=/user-service/**
+            filters:
+              - RemoveRequestHeader=Cookie
+              - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+              - JwtAuthentication
+
+          # Route 2: Catalog Service - Public (조회만 허용)
+          - id: catalog-service-public
+            uri: lb://CATALOG-SERVICE
+            predicates:
+              - Path=/catalog-service/catalogs
+              - Method=GET
+            filters:
+              - RemoveRequestHeader=Cookie
+              - RewritePath=/catalog-service/(?<segment>.*), /$\{segment}
+
+          # Route 3: Catalog Service - Protected (생성/수정/삭제는 인증 필요)
+          - id: catalog-service-protected
+            uri: lb://CATALOG-SERVICE
+            predicates:
+              - Path=/catalog-service/**
+            filters:
+              - RemoveRequestHeader=Cookie
+              - RewritePath=/catalog-service/(?<segment>.*), /$\{segment}
+              - JwtAuthentication
+
+          # Route 4: Order Service - Protected (생성/수정/삭제/조회 인증 필요)
+          - id: order-service
+            uri: lb://ORDER-SERVICE
+            predicates:
+              - Path=/order-service/**
+            filters:
+              - RemoveRequestHeader=Cookie
+              - RewritePath=/order-service/(?<segment>.*), /$\{segment}
+              - JwtAuthentication
+
+  # JWT Token Configuration
+  token:
+    access-expiration-time: 1800000
+    refresh-expiration-time: 604800000
+    secret: '{cipher}AQCIwz7n2luG81IcYOwvD/Xc0xXNLCgziePbwG73OlU/G+d1x+hyoEz8RlTtOCVGJnL/V9ozeIRBEJ/ly+yWTTCa2deLf71vUSt6U0fNEH217eZ350XdP1NgCuMd7y8REWVMY    
+  phAPAh8wLreekabi8UtBRCrP3wNOdBBiQgpCehr1rnhE9rwxcKVRtesqYULAOsLatZrNwu8EBmTvF0oPMeLdgAdWksiBfeEoHUKc3hXOBgm31ySaOnj6NNX+OgJT3TgSkzpaclNy9bPpYlSpdU2LvIR0    
+  FyhASuBfmE5gLq2P1MmOG+IoICKixHdpGSBBDjjT/1RBynmWo9wO9+biiMO+pZwY2JYVjK7P6evIAxNAAAFsNrX/BBapGAeUWYUUsFetq4ksHUtu8dG7jiYT1mO9QWLvXjR5bFaLOhYkRFPOo76LdTSI    
+  69XTMaexXqfi1A='
+
+  # Eureka Client Configuration
+  eureka:
+    instance:
+      instance-id: ${spring.application.name}:${server.port}
+      hostname: localhost
+      prefer-ip-address: false
+    client:
+      service-url:
+        defaultZone: http://localhost:8761/eureka
+      fetch-registry: true
+      register-with-eureka: true
+
+  # Management Endpoints
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: refresh,health,beans,info,httpexchanges
+    health:
+      rabbit:
+        enabled: false
