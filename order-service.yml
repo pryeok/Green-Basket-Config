@@ -1,4 +1,4 @@
- # Server Configuration
+# Server Configuration
   server:
     port: 0
 
@@ -12,7 +12,9 @@
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://localhost:3307/order_service?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
       username: greenbasket
-      password: '{cipher}AQCE+yjbSO2CXZnDTtbqj/x1K6pNV7vdGpEbWNnULr3/uAKQUJby7Ip8p87aiMDg2PTvcni6ALdrLW0wPfSEHKlpVMLcBLNs3WWF//VGmgYyQ7TtPKjn6iwd1fIFBQs711klnhwCxu+185im/QoPKtWzoc+I1ZoJhd6SvRipj5rC/uG8IwuaO535iXHhqXIbLBrKKr200t4qzTF3QenE8lMo0MbDodbiT9Vj2rkF+sVgUCORVnpj9BO2Z2xUDWpDXDe3pX2ILXP0lT4RNVBvwm6Bpq6LfhIU8mX9sUZWji7r5JbsF+OTXtZASoEjqdnpNFYuyg5fZIW70TiUaiwr1Hdp+Xqcf76hFUAxz9mjaAgyvjKLRcWTmOFtgf9mEeCxmEY='
+      password: '{cipher}AQCE+yjbSO2CXZnDTtbqj/x1K6pNV7vdGpEbWNnULr3/uAKQUJby7Ip8p87aiMDg2PTvcni6ALdrLW0wPfSEHKlpVMLcBLNs3WWF//VGmgYyQ7TtPKjn6iwd1fIFBQs71    
+  1klnhwCxu+185im/QoPKtWzoc+I1ZoJhd6SvRipj5rC/uG8IwuaO535iXHhqXIbLBrKKr200t4qzTF3QenE8lMo0MbDodbiT9Vj2rkF+sVgUCORVnpj9BO2Z2xUDWpDXDe3pX2ILXP0lT4RNVBvwm6Bp    
+  q6LfhIU8mX9sUZWji7r5JbsF+OTXtZASoEjqdnpNFYuyg5fZIW70TiUaiwr1Hdp+Xqcf76hFUAxz9mjaAgyvjKLRcWTmOFtgf9mEeCxmEY='
 
     # JPA Configuration
     jpa:
@@ -24,7 +26,7 @@
           format_sql: true
           dialect: org.hibernate.dialect.MySQLDialect
 
-    # RabbitMQ Configuration - Disabled
+    # RabbitMQ Configuration
     rabbitmq:
       host: 127.0.0.1
       port: 5672
@@ -34,6 +36,7 @@
         simple:
           auto-startup: true
 
+    # Cloud Configuration
     cloud:
       bus:
         enabled: true

@@ -1,10 +1,13 @@
-  # Database Configuration
+# Spring Application Configuration
   spring:
+    # Database Configuration
     datasource:
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://localhost:3307/user_service?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
       username: greenbasket
-      password: '{cipher}AQCE+yjbSO2CXZnDTtbqj/x1K6pNV7vdGpEbWNnULr3/uAKQUJby7Ip8p87aiMDg2PTvcni6ALdrLW0wPfSEHKlpVMLcBLNs3WWF//VGmgYyQ7TtPKjn6iwd1fIFBQs711klnhwCxu+185im/QoPKtWzoc+I1ZoJhd6SvRipj5rC/uG8IwuaO535iXHhqXIbLBrKKr200t4qzTF3QenE8lMo0MbDodbiT9Vj2rkF+sVgUCORVnpj9BO2Z2xUDWpDXDe3pX2ILXP0lT4RNVBvwm6Bpq6LfhIU8mX9sUZWji7r5JbsF+OTXtZASoEjqdnpNFYuyg5fZIW70TiUaiwr1Hdp+Xqcf76hFUAxz9mjaAgyvjKLRcWTmOFtgf9mEeCxmEY='
+      password: '{cipher}AQCE+yjbSO2CXZnDTtbqj/x1K6pNV7vdGpEbWNnULr3/uAKQUJby7Ip8p87aiMDg2PTvcni6ALdrLW0wPfSEHKlpVMLcBLNs3WWF//VGmgYyQ7TtPKjn6iwd1fIFBQs71    
+  1klnhwCxu+185im/QoPKtWzoc+I1ZoJhd6SvRipj5rC/uG8IwuaO535iXHhqXIbLBrKKr200t4qzTF3QenE8lMo0MbDodbiT9Vj2rkF+sVgUCORVnpj9BO2Z2xUDWpDXDe3pX2ILXP0lT4RNVBvwm6Bp    
+  q6LfhIU8mX9sUZWji7r5JbsF+OTXtZASoEjqdnpNFYuyg5fZIW70TiUaiwr1Hdp+Xqcf76hFUAxz9mjaAgyvjKLRcWTmOFtgf9mEeCxmEY='
 
     # JPA Configuration
     jpa:
@@ -33,9 +36,10 @@
         simple:
           auto-startup: true
 
+    # Cloud Configuration
     cloud:
       bus:
-        enabled: true 
+        enabled: true
 
     # Security
     security:
@@ -47,7 +51,10 @@
   token:
     access-expiration-time: 1800000
     refresh-expiration-time: 604800000
-    secret: '{cipher}AQCnhb9TNv6VTu87jfcvsgf3j/zqfNq+lykL/qqjeXXcDbQhxr6SXZh8gUvyRp1Tx9GTvupgavtPLI8OFiCm7bpNNaZPytSGDWY38tQyl8VcYdItmKfzBozPmfRsEARQ1jDCIFFiiVTrKDu5Q5PANGq6quaLl2WQikLj74ikU/czskImrR9m4ZKSZc2Ag0MfanHwB96NIpnqDRhCD5EEJyXycDHfhFTX9V3vei0VLHM3YLmMt5/T7FwyNnskn71F10ut1Y+DiJgmxQlW4FH5AxsOICgq5kN/HPF2ktmZKWWoNKiZQT2RDaqAZU7yYkSP/hwboxPbXY+RO/tNJ/NtYCVVCXlaPTKi5lcB2B9gyMLHnpjOXykp0LyvnUmDUPfOUiczIKtXTUk6ihJvLWyZfs+dYiwKbils1P3fKMZblRMcLt3B35IVk3Hr1IbEgB3Oo8U='
+    secret: '{cipher}AQCnhb9TNv6VTu87jfcvsgf3j/zqfNq+lykL/qqjeXXcDbQhxr6SXZh8gUvyRp1Tx9GTvupgavtPLI8OFiCm7bpNNaZPytSGDWY38tQyl8VcYdItmKfzBozPmfRsEARQ1jDCI    
+  FFiiVTrKDu5Q5PANGq6quaLl2WQikLj74ikU/czskImrR9m4ZKSZc2Ag0MfanHwB96NIpnqDRhCD5EEJyXycDHfhFTX9V3vei0VLHM3YLmMt5/T7FwyNnskn71F10ut1Y+DiJgmxQlW4FH5AxsOICgq5    
+  kN/HPF2ktmZKWWoNKiZQT2RDaqAZU7yYkSP/hwboxPbXY+RO/tNJ/NtYCVVCXlaPTKi5lcB2B9gyMLHnpjOXykp0LyvnUmDUPfOUiczIKtXTUk6ihJvLWyZfs+dYiwKbils1P3fKMZblRMcLt3B35IVk    
+  3Hr1IbEgB3Oo8U='
 
   # Eureka Client Configuration
   eureka:

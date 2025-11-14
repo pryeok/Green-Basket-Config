@@ -7,6 +7,16 @@
     application:
       name: apigateway-service
 
+    # RabbitMQ Configuration
+    rabbitmq:
+      host: 127.0.0.1
+      port: 5672
+      username: greenbasket
+      password: greenbasket
+      listener:
+        simple:
+          auto-startup: true
+
     # Cloud Configuration (통합)
     cloud:
       bus:
@@ -62,28 +72,14 @@
               - RewritePath=/order-service/(?<segment>.*), /$\{segment}
               - JwtAuthentication
 
-    # RabbitMQ Configuration
-    rabbitmq:
-      host: 127.0.0.1
-      port: 5672
-      username: greenbasket
-      password: greenbasket
-      listener:
-        simple:
-          auto-startup: true
-
-    cloud:
-      bus:
-        enabled: true 
-
   # JWT Token Configuration
   token:
     access-expiration-time: 1800000
     refresh-expiration-time: 604800000
-    secret: '{cipher}AQCnhb9TNv6VTu87jfcvsgf3j/zqfNq+lykL/qqjeXXcDbQhxr6SXZh8gUvyRp1Tx9GTvupgavtPLI8OFiCm7bpNNaZPytSGDWY38tQyl8VcYdItmKfzBozPmfRsEARQ1jDCIFFiiVTrKDu5Q5PANGq6quaLl2WQikLj74ikU/czskImrR9m4ZKSZc2Ag0MfanHwB96NIpnqDRhCD5EEJyXycDHfhFTX9V3vei0VLHM3YLmMt5/T7FwyNnskn71F10ut1Y+DiJgmxQlW4FH5AxsOICgq5kN/HPF2ktmZKWWoNKiZQT2RDaqAZU7yYkSP/hwboxPbXY+RO/tNJ/NtYCVVCXlaPTKi5lcB2B9gyMLHnpjOXykp0LyvnUmDUPfOUiczIKtXTUk6ihJvLWyZfs+dYiwKbils1P3fKMZblRMcLt3B35IVk3Hr1IbEgB3Oo8U='
-
-
-  
+    secret: '{cipher}AQCnhb9TNv6VTu87jfcvsgf3j/zqfNq+lykL/qqjeXXcDbQhxr6SXZh8gUvyRp1Tx9GTvupgavtPLI8OFiCm7bpNNaZPytSGDWY38tQyl8VcYdItmKfzBozPmfRsEARQ1jDCI    
+  FFiiVTrKDu5Q5PANGq6quaLl2WQikLj74ikU/czskImrR9m4ZKSZc2Ag0MfanHwB96NIpnqDRhCD5EEJyXycDHfhFTX9V3vei0VLHM3YLmMt5/T7FwyNnskn71F10ut1Y+DiJgmxQlW4FH5AxsOICgq5    
+  kN/HPF2ktmZKWWoNKiZQT2RDaqAZU7yYkSP/hwboxPbXY+RO/tNJ/NtYCVVCXlaPTKi5lcB2B9gyMLHnpjOXykp0LyvnUmDUPfOUiczIKtXTUk6ihJvLWyZfs+dYiwKbils1P3fKMZblRMcLt3B35IVk    
+  3Hr1IbEgB3Oo8U='
 
   # Eureka Client Configuration
   eureka:
