@@ -36,7 +36,7 @@
 
     # Security
     security:
-      user
+      user:
         name: user
         password: $2a$10$g70rRcQBR7Jnm9A9m/Nqje8lCIPeADz2.VBMxhPyzUBoJc28pvC9.
 
