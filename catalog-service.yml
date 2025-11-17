@@ -72,3 +72,10 @@
     health:
       rabbit:
         enabled: false
+
+  # Catalog Service Exception Messages
+  catalog-service:
+    exception:
+      products-not-found: "요청한 상품을 찾을 수 없습니다"
+      invalid-product-id: "유효하지 않은 상품 ID입니다"
+      internal-error: "내부 서버 오류가 발생했습니다"
