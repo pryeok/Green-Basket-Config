@@ -90,28 +90,39 @@
       instances:
         catalog-service:
           registerHealthIndicator: true
-          slidingWindowSize: 10
-          minimumNumberOfCalls: 5
-          permittedNumberOfCallsInHalfOpenState: 3
+          slidingWindowSize: 10  # 최근 n개 호출을 기준으로 실패율 계산
+          minimumNumberOfCalls: 5  # 최소 n번은 호출해봐야 실패율 판단 시작 (성급한 차단 방지)
+          permittedNumberOfCallsInHalfOpenState: 3  # 실패율 n% 넘으면 Circuit Open (차단)
           automaticTransitionFromOpenToHalfOpenEnabled: true
-          waitDurationInOpenState: 5s
-          failureRateThreshold: 50
+          waitDurationInOpenState: 5s  # Circuit Open 후 n초 대기하고 다시 테스트
+          failureRateThreshold: 50  # 테스트 모드에서 3번 호출 허용 (성공시 정상 복귀)
+          eventConsumerBufferSize: 10  # Circuit Breaker 이벤트 기록 버퍼 크기
+        catalog-order:
+          registerHealthIndicator: true
+          slidingWindowSize: 20
+          minimumNumberOfCalls: 10
+          permittedNumberOfCallsInHalfOpenState: 5
+          automaticTransitionFromOpenToHalfOpenEnabled: true
+          waitDurationInOpenState: 10s
+          failureRateThreshold: 30
           eventConsumerBufferSize: 10
+
+
 
     retry:
       instances:
         catalog-service:
-          maxAttempts: 3
-          waitDuration: 1s
+          maxAttempts: 3  # 총 n번 시도 (첫 시도+재시도)
+          waitDuration: 1s  # 재시도 전 대기 시간
           enableExponentialBackoff: true
-          exponentialBackoffMultiplier: 2
-          retryExceptions:
+          exponentialBackoffMultiplier: 2  # 재시도 간격을 지수적으로 증가
+          retryExceptions:  # 이 예외들만 재시도
             - feign.RetryableException
             - java.net.UnknownHostException
-          ignoreExceptions:
+          ignoreExceptions:  # 이 예외들은 재시도하지 않음
             - orderservice.exception.OutOfStockException
 
     timelimiter:
       instances:
         catalog-service:
-          timeoutDuration: 5s
+          timeoutDuration: 10s
