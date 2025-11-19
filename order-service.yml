@@ -1,4 +1,4 @@
-# Server Configuration
+ # Server Configuration
   server:
     port: 0
 
@@ -12,7 +12,9 @@
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://localhost:3307/order_service?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
       username: greenbasket
-      password: '{cipher}AQCE+yjbSO2CXZnDTtbqj/x1K6pNV7vdGpEbWNnULr3/uAKQUJby7Ip8p87aiMDg2PTvcni6ALdrLW0wPfSEHKlpVMLcBLNs3WWF//VGmgYyQ7TtPKjn6iwd1fIFBQs711klnhwCxu+185im/QoPKtWzoc+I1ZoJhd6SvRipj5rC/uG8IwuaO535iXHhqXIbLBrKKr200t4qzTF3QenE8lMo0MbDodbiT9Vj2rkF+sVgUCORVnpj9BO2Z2xUDWpDXDe3pX2ILXP0lT4RNVBvwm6Bpq6LfhIU8mX9sUZWji7r5JbsF+OTXtZASoEjqdnpNFYuyg5fZIW70TiUaiwr1Hdp+Xqcf76hFUAxz9mjaAgyvjKLRcWTmOFtgf9mEeCxmEY='
+      password: '{cipher}AQCE+yjbSO2CXZnDTtbqj/x1K6pNV7vdGpEbWNnULr3/uAKQUJby7Ip8p87aiMDg2PTvcni6ALdrLW0wPfSEHKlpVMLcBLNs3WWF//VGmgYyQ7TtPKjn6iwd1fIFBQs71    
+  1klnhwCxu+185im/QoPKtWzoc+I1ZoJhd6SvRipj5rC/uG8IwuaO535iXHhqXIbLBrKKr200t4qzTF3QenE8lMo0MbDodbiT9Vj2rkF+sVgUCORVnpj9BO2Z2xUDWpDXDe3pX2ILXP0lT4RNVBvwm6Bp    
+  q6LfhIU8mX9sUZWji7r5JbsF+OTXtZASoEjqdnpNFYuyg5fZIW70TiUaiwr1Hdp+Xqcf76hFUAxz9mjaAgyvjKLRcWTmOFtgf9mEeCxmEY='
 
     # JPA Configuration
     jpa:
@@ -67,20 +69,51 @@
       rabbit:
         enabled: false
 
-    # Order Service Exception Messages
-    order-service:
-      exception:
-        products-not-found: "주문 실패: 상품을 찾을 수 없습니다."
-        out-of-stock: "주문 실패: 재고가 부족합니다"
-        order-creation-decrease-failed: "주문 실패: 일시적 오류가 발생했습니다. 잠시 후 다시 시도해주세요"
+  # Order Service Exception Messages
+  order-service:
+    exception:
+      products-not-found: "주문 실패: 상품을 찾을 수 없습니다."
+      out-of-stock: "주문 실패: 재고가 부족합니다"
+      order-creation-decrease-failed: "주문 실패: 일시적 오류가 발생했습니다. 잠시 후 다시 시도해주세요"
 
-  # Feign Circuit Breaker 활성화 (필수!)
+  # Feign Circuit Breaker
   feign:
     circuitbreaker:
       enabled: true
     client:
       config:
         default:
-          connectTimeout: 5000
-          readTimeout: 5000
-      
+          connectTimeout: 2000
+          readTimeout: 2000
+
+  # Resilience4j Circuit Breaker
+  resilience4j:
+    circuitbreaker:
+      instances:
+        catalog-service:
+          registerHealthIndicator: true
+          slidingWindowSize: 10
+          minimumNumberOfCalls: 5
+          permittedNumberOfCallsInHalfOpenState: 3
+          automaticTransitionFromOpenToHalfOpenEnabled: true
+          waitDurationInOpenState: 5s
+          failureRateThreshold: 50
+          eventConsumerBufferSize: 10
+
+    retry:
+      instances:
+        catalog-service:
+          maxAttempts: 3
+          waitDuration: 1s
+          enableExponentialBackoff: true
+          exponentialBackoffMultiplier: 2
+          retryExceptions:
+            - feign.RetryableException
+            - java.net.UnknownHostException
+          ignoreExceptions:
+            - orderservice.exception.OutOfStockException
+
+    timelimiter:
+      instances:
+        catalog-service:
+          timeoutDuration: 5s
