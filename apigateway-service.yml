@@ -7,6 +7,11 @@
     application:
       name: apigateway-service
 
+    # Zipkin 설정
+    zipkin:
+      base-url: http://localhost:9411
+      enabled: true
+
     # RabbitMQ Configuration
     rabbitmq:
       host: 127.0.0.1
@@ -92,6 +97,12 @@
 
   # Management Endpoints
   management:
+    tracing:
+      sampling:
+        probability: 1.0 
+    zipkin:
+      tracing:
+        endpoint: http://localhost:9411/api/v2/spans
     endpoints:
       web:
         exposure:
