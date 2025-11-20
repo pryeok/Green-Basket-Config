@@ -49,6 +49,9 @@
     cloud:
       bus:
         enabled: true
+      openfeign:
+        micrometer:
+          enabled: true
 
   # Eureka Client Configuration
   eureka:
