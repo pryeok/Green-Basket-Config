@@ -1,0 +1,95 @@
+# Server Configuration
+  server:
+    port: 0
+
+  # Spring Application Configuration
+  spring:
+    application:
+      name: catalog-interaction-service
+    
+    # Zipkin 설정
+    zipkin:
+      base-url: http://localhost:9411
+      enabled: true
+
+    # Spring Security - Disabled
+    autoconfigure:
+      exclude:
+        - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+        - org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration
+
+    # Database Configuration
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3307/catalog-interaction-service?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
+      username: greenbasket
+      password: '{cipher}AQCE+yjbSO2CXZnDTtbqj/x1K6pNV7vdGpEbWNnULr3/uAKQUJby7Ip8p87aiMDg2PTvcni6ALdrLW0wPfSEHKlpVMLcBLNs3WWF//VGmgYyQ7TtPKjn6iwd1fIFBQs711klnhwCxu+185im/QoPKtWzoc+I1ZoJhd6SvRipj5rC/uG8IwuaO535iXHhqXIbLBrKKr200t4qzTF3QenE8lMo0MbDodbiT9Vj2rkF+sVgUCORVnpj9BO2Z2xUDWpDXDe3pX2ILXP0lT4RNVBvwm6Bpq6LfhIU8mX9sUZWji7r5JbsF+OTXtZASoEjqdnpNFYuyg5fZIW70TiUaiwr1Hdp+Xqcf76hFUAxz9mjaAgyvjKLRcWTmOFtgf9mEeCxmEY='
+
+    # JPA Configuration
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
+          dialect: org.hibernate.dialect.MySQLDialect
+
+    # RabbitMQ Configuration
+    rabbitmq:
+      host: 127.0.0.1
+      port: 5672
+      username: greenbasket
+      password: greenbasket
+      listener:
+        simple:
+          auto-startup: true
+
+    # Cloud Configuration
+    cloud:
+      bus:
+        enabled: true
+      openfeign:
+        micrometer:
+          enabled: true
+
+  # Eureka Client Configuration
+  eureka:
+    instance:
+      instance-id: ${spring.application.name}:${local.server.port}
+      hostname: localhost
+      prefer-ip-address: false
+    client:
+      service-url:
+        defaultZone: http://localhost:8761/eureka
+      fetch-registry: true
+      register-with-eureka: true
+
+  # Logging
+  logging:
+    level:
+      org.springframework.security: DEBUG
+      com.example.userservice.client: DEBUG
+
+  # Management Endpoints
+  management:
+    tracing:
+      sampling:
+        probability: 1.0
+      propagation:
+        type: b3
+    zipkin:
+      tracing:
+        endpoint: http://localhost:9411/api/v2/spans
+    endpoints:
+      web:
+        exposure:
+          include: refresh,health,beans,info,busrefresh
+    health:
+      rabbit:
+        enabled: false
+
+  # Catalog Interaction Service Exception Messages
+  # catalog-interaction-service:
+  #   exception:
+
