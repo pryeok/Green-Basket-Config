@@ -7,7 +7,7 @@
     application:
       name: catalog-service
     
-    # Zipkin 설정
+    # Zipkin
     zipkin:
       base-url: http://localhost:9411
       enabled: true
@@ -34,6 +34,10 @@
         hibernate:
           format_sql: true
           dialect: org.hibernate.dialect.MySQLDialect
+
+    # Kafka Configuration
+    kafka:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
 
     # RabbitMQ Configuration
     rabbitmq:

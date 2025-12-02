@@ -1,12 +1,12 @@
-# Server Configuration
+  # Server Configuration
   server:
     port: 0
 
   # Spring Application Configuration
   spring:
     application:
-      name: catalog-interaction-service
-    
+      name: hot-catalog-service
+
     # Zipkin
     zipkin:
       base-url: http://localhost:9411
@@ -18,34 +18,24 @@
         - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
         - org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration
 
-    # Database Configuration
-    datasource:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3307/catalog_interaction_service?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
-      username: greenbasket
-      password: '{cipher}AQCE+yjbSO2CXZnDTtbqj/x1K6pNV7vdGpEbWNnULr3/uAKQUJby7Ip8p87aiMDg2PTvcni6ALdrLW0wPfSEHKlpVMLcBLNs3WWF//VGmgYyQ7TtPKjn6iwd1fIFBQs711klnhwCxu+185im/QoPKtWzoc+I1ZoJhd6SvRipj5rC/uG8IwuaO535iXHhqXIbLBrKKr200t4qzTF3QenE8lMo0MbDodbiT9Vj2rkF+sVgUCORVnpj9BO2Z2xUDWpDXDe3pX2ILXP0lT4RNVBvwm6Bpq6LfhIU8mX9sUZWji7r5JbsF+OTXtZASoEjqdnpNFYuyg5fZIW70TiUaiwr1Hdp+Xqcf76hFUAxz9mjaAgyvjKLRcWTmOFtgf9mEeCxmEY='
-
-    # JPA Configuration
-    jpa:
-      hibernate:
-        ddl-auto: update
-      show-sql: true
-      properties:
-        hibernate:
-          format_sql: true
-          dialect: org.hibernate.dialect.MySQLDialect
-
-    # Kafka Configuration
-    kafka:
-      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
-
     # Redis Configuration
     data:
       redis:
         host: ${REDIS_HOST:localhost}
         port: ${REDIS_PORT:6379}
-        database: 2
-        timeout: 60000
+        database: 1
+
+    # Kafka Configuration
+    kafka:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+      consumer:
+        group-id: hot-catalog-service
+        auto-offset-reset: earliest
+        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        enable-auto-commit: false
+      listener:
+        ack-mode: manual
 
     # RabbitMQ Configuration
     rabbitmq:
@@ -81,7 +71,8 @@
   logging:
     level:
       org.springframework.security: DEBUG
-      com.example.userservice.client: DEBUG
+      org.springframework.kafka: INFO
+      hotcatalogservice: DEBUG
 
   # Management Endpoints
   management:
@@ -101,7 +92,7 @@
       rabbit:
         enabled: false
 
-  # Catalog Interaction Service Exception Messages
-  # catalog-interaction-service:
-  #   exception:
 
+  # Catalog Service Exception Messages
+  # catalog-service:
+  #   exception:

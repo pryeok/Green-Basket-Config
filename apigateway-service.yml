@@ -7,7 +7,7 @@
     application:
       name: apigateway-service
 
-    # Zipkin 설정
+    # Zipkin
     zipkin:
       base-url: http://localhost:9411
       enabled: true
@@ -22,7 +22,7 @@
         simple:
           auto-startup: true
 
-    # Cloud Configuration (통합)
+    # Cloud Configuration
     cloud:
       bus:
         enabled: true
