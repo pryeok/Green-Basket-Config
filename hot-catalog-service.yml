@@ -92,7 +92,6 @@
       rabbit:
         enabled: false
 
-
   # Catalog Service Exception Messages
   # catalog-service:
-  #   exception:
+  #   exception: 
