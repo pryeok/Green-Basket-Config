@@ -68,7 +68,8 @@
   # Eureka Client Configuration
   eureka:
     instance:
-      instance-id: ${spring.application.name}:${local.server.port}
+      # instance-id: ${spring.application.name}:${local.server.port}
+      instance-id: ${spring.application.name}:${random.value}
       hostname: localhost
       prefer-ip-address: false
     client:
